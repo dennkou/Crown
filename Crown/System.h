@@ -2,6 +2,8 @@
 #ifndef CROWN_SYSTEM
 #define CROWN_SYSTEM
 
+#include "Object/Window.h"
+
 namespace Crown
 {
 	//================================================================================
@@ -14,8 +16,12 @@ namespace Crown
 	class System final
 	{
 	public:
-		System();
-		~System();
+
+		/// <summary>
+		/// systemクラスへの唯一のポインタを返すよ☆
+		/// </summary>
+		/// <returns></returns>
+		static System* GetInstance();
 
 		/// <summary>
 		/// エンジン全体の初期化を行うよ☆
@@ -33,7 +39,22 @@ namespace Crown
 		/// </summary>
 		void Finalize();
 
+		/// <summary>
+		/// Crown全体が終了しようとしているのかを示すフラグを所得するよ☆
+		/// </summary>
+		/// <returns>trueで終了しようとしている</returns>
+		inline bool GetEndFlag() const { return m_endFlag; }
+
 	private:
+		System();
+		~System();
+		System(System& system) = delete;
+		System& operator=(System& crown) = delete;
+
+		static System* m_system;
+
+		Window m_window;
+		bool m_endFlag;
 	};
 }
 #endif	//	CROWN

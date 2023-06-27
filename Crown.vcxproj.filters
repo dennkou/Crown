@@ -5,15 +5,30 @@
     <ClCompile Include="Crown\System.cpp">
       <Filter>Crown</Filter>
     </ClCompile>
+    <ClCompile Include="Crown\Object\Window.cpp">
+      <Filter>Crown\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DirectX12テンプレートプロジェクト\Crown\SystemObject\Input.cpp">
+      <Filter>Crown\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Crown">
       <UniqueIdentifier>{ed024ba7-10b6-46dc-af02-0baa02ea058d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Crown\Object">
+      <UniqueIdentifier>{86baee08-5e15-444a-af81-7a09bd6fd883}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Crown\System.h">
       <Filter>Crown</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\Window.h">
+      <Filter>Crown\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\DirectX12テンプレートプロジェクト\Crown\SystemObject\Input.h">
+      <Filter>Crown\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

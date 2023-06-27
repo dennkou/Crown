@@ -127,10 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\DirectX12テンプレートプロジェクト\Crown\SystemObject\Input.cpp" />
+    <ClCompile Include="Crown\Object\Window.cpp" />
     <ClCompile Include="Crown\System.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\DirectX12テンプレートプロジェクト\Crown\SystemObject\Input.h" />
+    <ClInclude Include="Crown\Object\Window.h" />
     <ClInclude Include="Crown\System.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
