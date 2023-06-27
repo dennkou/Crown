@@ -2,5 +2,18 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Crown\System.cpp">
+      <Filter>Crown</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Crown">
+      <UniqueIdentifier>{ed024ba7-10b6-46dc-af02-0baa02ea058d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Crown\System.h">
+      <Filter>Crown</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

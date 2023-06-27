@@ -16,13 +16,5 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_DEBUG);
 #endif // _DEBUG
 
-	//Crown::Engine* crown = Crown::Engine::GetEngine();
-
-#ifdef _DEBUG
-	//crown->UseLogConsole();
-	//crown->UseLogFile();
-#endif // _DEBUG
-	//crown->Execution();
-	//crown->DeleteEngine();
 	return 0;
 }
