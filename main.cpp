@@ -12,25 +12,24 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	UNREFERENCED_PARAMETER(lpCmdLine);
 	UNREFERENCED_PARAMETER(nCmdShow);
 
-	Crown::System* system = Crown::System::GetInstance();
-	Game game;
-
-	system->Initialize();
-
 #ifdef _DEBUG
 	// メモリリークチェックのためのデバッグフラグを設定するよ☆
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	// レポートモードを設定するよ☆
 	_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_DEBUG);
 #endif // _DEBUG
+	Crown::System& crown = Crown::System::GetInstance();
+	crown.Initialize();
 
-	while (!system->GetEndFlag())
+	Game game;
+
+	while (!crown.GetEndFlag())
 	{
-		system->Update();
+		crown.Update();
 		game.Updata();
 	}
 
-	system->Finalize();
+	crown.Finalize();
 
 	return 0;
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "./../Crown/Object/RenderSystem/Model/Model.h"
 class Game
 {
 public:
@@ -7,4 +8,5 @@ public:
 
 	void Updata();
 private:
+	Crown::RenderObject::Model m_model;
 };

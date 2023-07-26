@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -100,14 +100,20 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>./DirectXTex-main\DirectXTex</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>./DirectXTex-main\DirectXTex\Bin\Desktop_2022_Win10\x64\Debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -118,24 +124,112 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\it222199\source\repos\Crown\DirectXTex-main\DirectXTex;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>./DirectXTex\Bin\Desktop_2022_Win10\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\DirectX12テンプレートプロジェクト\Crown\SystemObject\Input.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\BlobConstBuffer\BlobConstBuffer.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\Camera.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\CommandAllocator.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\DescriptorHeaps.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\GraphicPipeline.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\GraphicsCommandList.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\ResourceUploader.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\RootSignature.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\SwapChain.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\Model\Material.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\Model\MaterialMesh.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\Model\Model.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\Model\ModelLoader.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\Model\ModelManager.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\Model\Vertices.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\RenderCommandFactory.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\RenderCommandQueue.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetDescriptor.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetDescriptorHeap.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetIndexBuffer.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetPipelineState.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetPrimitiveTopology.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetRootSignature.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetVertexBuffer.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\RenderSystem.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\Shader.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\TextureBuffer.cpp" />
     <ClCompile Include="Crown\Object\Window.cpp" />
     <ClCompile Include="Crown\System.cpp" />
+    <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\DirectX12テンプレートプロジェクト\Crown\SystemObject\Input.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\BlobConstBuffer\BlobConstBuffer.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\Camera.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\CommandAllocator.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\DescriptorHeaps.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\GraphicPipeline.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\GraphicsCommandList.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\ResourceUploader.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\RootSignature.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\SwapChain.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\Model\Material.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\Model\MaterialMesh.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\Model\Model.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\Model\ModelLoader.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\Model\ModelManager.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\Model\MaterialTag.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\Model\Vertices.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\RenderCommandBase.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\RenderCommandFactory.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\RenderCommandQueue.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetDescriptor.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetDescriptorHeap.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetIndexBuffer.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetPipelineState.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetPrimitiveTopology.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetRootSignature.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetVertexBuffer.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\RenderSystem.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\Shader.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\TextureBuffer.h" />
+    <ClInclude Include="Crown\Object\StringAlgorithm.h" />
     <ClInclude Include="Crown\Object\Window.h" />
     <ClInclude Include="Crown\System.h" />
+    <ClInclude Include="Game\Game.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ヘッダーテンプレート.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Crown\Shader\DefaultPixelShader.hlsl">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">DefaultPixelShader</EntryPointName>
+      <DisableOptimizations Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DisableOptimizations>
+      <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</EnableDebuggingInformation>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resource\Shader\PMD\%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Crown\Shader\DefaultVertexShader.hlsl">
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resource\Shader\PMD\%(Filename).cso</ObjectFileOutput>
+      <DisableOptimizations Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DisableOptimizations>
+      <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</EnableDebuggingInformation>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">DefaultVertexShader</EntryPointName>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Crown\Shader\Data.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

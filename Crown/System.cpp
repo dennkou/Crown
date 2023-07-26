@@ -4,33 +4,37 @@
 
 
 
-Crown::System* Crown::System::m_system = nullptr;
+std::unique_ptr<Crown::System> Crown::System::m_system;
 
 
 
 Crown::System::System()
 	:
-	m_endFlag(false)
+	m_endFlag(false),
+	m_window(),
+	m_renderSystem(m_window)
 {
 }
 
 Crown::System::~System()
 {
+
 }
 
-Crown::System* Crown::System::GetInstance()
+Crown::System& Crown::System::GetInstance()
 {
-	if (m_system == nullptr)
+	if (!m_system)
 	{
-		m_system = new System();
+		m_system.reset(new System());
 	}
-	return m_system;
+	return *m_system.get();
 }
 
 LRESULT CrownWindowProcedure(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
 void Crown::System::Initialize()
 {
 	m_window.MakeWindow(L"Crown", CrownWindowProcedure, WS_OVERLAPPEDWINDOW);
+	m_renderSystem.Initialize();
 	m_window.DisplayWindow();
 }
 
@@ -38,11 +42,11 @@ void Crown::System::Update()
 {
 	m_window.ProcessMessage();
 	m_endFlag = m_window.GetEndFlag();
+	m_renderSystem.Update();
 }
 
 void Crown::System::Finalize()
 {
-
 }
 
 

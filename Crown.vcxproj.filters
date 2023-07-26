@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Crown\System.cpp">
       <Filter>Crown</Filter>
     </ClCompile>
@@ -11,6 +10,91 @@
     <ClCompile Include="..\DirectX12テンプレートプロジェクト\Crown\SystemObject\Input.cpp">
       <Filter>Crown\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\RenderSystem.cpp">
+      <Filter>Crown\Object\RenderSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\CommandAllocator.cpp">
+      <Filter>Crown\Object\RenderSystem\DirectX12Wraps</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\GraphicPipeline.cpp">
+      <Filter>Crown\Object\RenderSystem\DirectX12Wraps</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\GraphicsCommandList.cpp">
+      <Filter>Crown\Object\RenderSystem\DirectX12Wraps</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\SwapChain.cpp">
+      <Filter>Crown\Object\RenderSystem\DirectX12Wraps</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\Model\ModelManager.cpp">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\Model\Model.cpp">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\Model\Vertices.cpp">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\ResourceUploader.cpp">
+      <Filter>Crown\Object\RenderSystem\DirectX12Wraps</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\DescriptorHeaps.cpp">
+      <Filter>Crown\Object\RenderSystem\DirectX12Wraps</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\Model\MaterialMesh.cpp">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\RootSignature.cpp">
+      <Filter>Crown\Object\RenderSystem\DirectX12Wraps</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\Model\Material.cpp">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\Model\ModelLoader.cpp">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\TextureBuffer.cpp">
+      <Filter>Crown\Object\RenderSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\RenderCommandFactory.cpp">
+      <Filter>Crown\Object\RenderSystem\RenderCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\RenderCommandQueue.cpp">
+      <Filter>Crown\Object\RenderSystem\RenderCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetDescriptor.cpp">
+      <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\BlobConstBuffer\BlobConstBuffer.cpp">
+      <Filter>Crown\Object\RenderSystem\BlobConstBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\Camera.cpp">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetDescriptorHeap.cpp">
+      <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetRootSignature.cpp">
+      <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\Shader.cpp">
+      <Filter>Crown\Object\RenderSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetPipelineState.cpp">
+      <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetVertexBuffer.cpp">
+      <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetIndexBuffer.cpp">
+      <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetPrimitiveTopology.cpp">
+      <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Crown">
@@ -18,6 +102,33 @@
     </Filter>
     <Filter Include="Crown\Object">
       <UniqueIdentifier>{86baee08-5e15-444a-af81-7a09bd6fd883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{1c6eec3d-2d5c-424d-ae48-e80b2eedaba9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crown\Object\RenderSystem">
+      <UniqueIdentifier>{4cb410dd-bef0-4ede-9bd1-b28dc4a8f26f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crown\Object\RenderSystem\DirectX12Wraps">
+      <UniqueIdentifier>{858bc5d9-f677-4520-93f3-4328e835c54f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crown\Object\RenderSystem\Model">
+      <UniqueIdentifier>{2fde15c9-74f7-4820-8427-b5b78c0bd3ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crown\Debug">
+      <UniqueIdentifier>{cee9fb0d-50e7-402b-b0ee-5dffcb1b7333}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crown\Object\RenderSystem\RenderCommands">
+      <UniqueIdentifier>{ffe809f0-19e8-420a-8ffc-e80e8c785708}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crown\Object\RenderSystem\RenderCommands\Command">
+      <UniqueIdentifier>{f31e12dc-046d-492e-8145-520832fb7c02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crown\Object\RenderSystem\BlobConstBuffer">
+      <UniqueIdentifier>{eb35ba6a-2a07-4d15-83b3-4058e8372286}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crown\Shader">
+      <UniqueIdentifier>{b308b916-f115-4ff9-b16a-4f5fd49f80f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,5 +141,114 @@
     <ClInclude Include="..\DirectX12テンプレートプロジェクト\Crown\SystemObject\Input.h">
       <Filter>Crown\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\RenderSystem.h">
+      <Filter>Crown\Object\RenderSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\CommandAllocator.h">
+      <Filter>Crown\Object\RenderSystem\DirectX12Wraps</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\GraphicPipeline.h">
+      <Filter>Crown\Object\RenderSystem\DirectX12Wraps</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\GraphicsCommandList.h">
+      <Filter>Crown\Object\RenderSystem\DirectX12Wraps</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\SwapChain.h">
+      <Filter>Crown\Object\RenderSystem\DirectX12Wraps</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\Model\ModelManager.h">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\Model\MaterialTag.h">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\Model\Model.h">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\Model\Vertices.h">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\ResourceUploader.h">
+      <Filter>Crown\Object\RenderSystem\DirectX12Wraps</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\DescriptorHeaps.h">
+      <Filter>Crown\Object\RenderSystem\DirectX12Wraps</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\Model\MaterialMesh.h">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\Model\Material.h">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\RootSignature.h">
+      <Filter>Crown\Object\RenderSystem\DirectX12Wraps</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\StringAlgorithm.h">
+      <Filter>Crown\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\Model\ModelLoader.h">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\TextureBuffer.h">
+      <Filter>Crown\Object\RenderSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\RenderCommandBase.h">
+      <Filter>Crown\Object\RenderSystem\RenderCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\RenderCommandFactory.h">
+      <Filter>Crown\Object\RenderSystem\RenderCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\RenderCommandQueue.h">
+      <Filter>Crown\Object\RenderSystem\RenderCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetDescriptor.h">
+      <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\BlobConstBuffer\BlobConstBuffer.h">
+      <Filter>Crown\Object\RenderSystem\BlobConstBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\Camera.h">
+      <Filter>Crown\Object\RenderSystem\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetDescriptorHeap.h">
+      <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetRootSignature.h">
+      <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\Shader.h">
+      <Filter>Crown\Object\RenderSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetPipelineState.h">
+      <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetVertexBuffer.h">
+      <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetIndexBuffer.h">
+      <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetPrimitiveTopology.h">
+      <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ヘッダーテンプレート.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Crown\Shader\DefaultVertexShader.hlsl">
+      <Filter>Crown\Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Crown\Shader\DefaultPixelShader.hlsl">
+      <Filter>Crown\Shader</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Crown\Shader\Data.hlsli">
+      <Filter>Crown\Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

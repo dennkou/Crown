@@ -3,6 +3,7 @@
 #define CROWN_SYSTEM
 
 #include "Object/Window.h"
+#include "Object/RenderSystem/RenderSystem.h"
 
 namespace Crown
 {
@@ -16,12 +17,13 @@ namespace Crown
 	class System final
 	{
 	public:
+		~System();
 
 		/// <summary>
 		/// systemクラスへの唯一のポインタを返すよ☆
 		/// </summary>
 		/// <returns></returns>
-		static System* GetInstance();
+		static System& GetInstance();
 
 		/// <summary>
 		/// エンジン全体の初期化を行うよ☆
@@ -45,15 +47,21 @@ namespace Crown
 		/// <returns>trueで終了しようとしている</returns>
 		inline bool GetEndFlag() const { return m_endFlag; }
 
+		/// <summary>
+		/// 描画エンジンを渡すよ☆
+		/// </summary>
+		/// <returns></returns>
+		inline RenderObject::RenderSystem& GetRenderSystem() { return m_renderSystem; }
+
 	private:
 		System();
-		~System();
 		System(System& system) = delete;
 		System& operator=(System& crown) = delete;
 
-		static System* m_system;
+		static std::unique_ptr<System> m_system;
 
 		Window m_window;
+		RenderObject::RenderSystem m_renderSystem;
 		bool m_endFlag;
 	};
 }
