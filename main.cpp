@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include <iostream>
 #include "Crown/System.h"
+#include "Game/Game.h"
 
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
@@ -12,6 +13,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	UNREFERENCED_PARAMETER(nCmdShow);
 
 	Crown::System* system = Crown::System::GetInstance();
+	Game game;
 
 	system->Initialize();
 
@@ -25,6 +27,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	while (!system->GetEndFlag())
 	{
 		system->Update();
+		game.Updata();
 	}
 
 	system->Finalize();
