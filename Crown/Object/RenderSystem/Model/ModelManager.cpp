@@ -3,6 +3,9 @@
 #include "ModelLoader.h"
 
 Crown::RenderObject::ModelManager::ModelManager()
+	:
+	m_device(),
+	m_textureBuffer()
 {
 }
 

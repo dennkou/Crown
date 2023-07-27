@@ -9,7 +9,6 @@ Crown::RenderObject::ResourceUploader* Crown::RenderObject::ResourceUploader::me
 
 Crown::RenderObject::ResourceUploader::ResourceUploader()
 	:
-	m_bufferIndex(0),
 	m_commandList(nullptr),
 	m_device(nullptr)
 {
@@ -19,13 +18,13 @@ Crown::RenderObject::ResourceUploader::~ResourceUploader()
 {
 }
 
-void Crown::RenderObject::ResourceUploader::CreateResourceUploader(ID3D12Device* device, GraphicsCommandList* commandList)
+void Crown::RenderObject::ResourceUploader::CreateResourceUploader(ID3D12Device* device, GraphicsCommandList& commandList)
 {
 	if (me == nullptr)
 	{
 		me = new ResourceUploader();
 		me->m_device = device;
-		me->m_commandList = commandList;
+		me->m_commandList = &commandList;
 	}
 }
 
@@ -42,7 +41,4 @@ void Crown::RenderObject::ResourceUploader::DeleteInstance()
 
 void Crown::RenderObject::ResourceUploader::DeleteUploadResource()
 {
-	++m_bufferIndex;
-	m_bufferIndex %= 2;
-	uploadResource[m_bufferIndex].clear();
 }

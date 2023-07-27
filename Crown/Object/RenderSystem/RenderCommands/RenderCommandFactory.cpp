@@ -15,51 +15,37 @@ Crown::RenderObject::RenderCommand::RenderCommandFactory::~RenderCommandFactory(
 {
 }
 
-void Crown::RenderObject::RenderCommand::RenderCommandFactory::Load(FILE* file, RenderCommandQueue& commandQueue)
+void Crown::RenderObject::RenderCommand::RenderCommandFactory::CreateSetDescriptorHeap(std::vector<std::shared_ptr<RenderCommandBase>>& commandQueue)
 {
+	commandQueue.emplace_back(std::make_shared<SetDescriptorHeap>());
 }
 
-void Crown::RenderObject::RenderCommand::RenderCommandFactory::Write(FILE* file, RenderCommandQueue* commandQueue)
+void Crown::RenderObject::RenderCommand::RenderCommandFactory::CreateSetDescriptor(std::vector<std::shared_ptr<RenderCommandBase>>& commandQueue, unsigned int rootParameterIndex, unsigned int descriptorOffset)
 {
+	commandQueue.emplace_back(std::make_shared<SetDescriptor>(descriptorOffset, rootParameterIndex));
 }
 
-
-
-//	Ç±Ç±Ç©ÇÁRenderCommandÇÉZÉbÉgÇ∑ÇÈä÷êîÇæÇÊÅô
-
-
-
-void Crown::RenderObject::RenderCommand::RenderCommandFactory::CreateSetDescriptorHeap(RenderCommandQueue& commandQueue)
+void Crown::RenderObject::RenderCommand::RenderCommandFactory::CreateSetRootSignature(std::vector<std::shared_ptr<RenderCommandBase>>& commandQueue, const Microsoft::WRL::ComPtr<ID3D12RootSignature>& rootSignature)
 {
-	commandQueue.AddCommand(new SetDescriptorHeap);
+	commandQueue.emplace_back(std::make_shared<SetRootSignature>(rootSignature));
 }
 
-void Crown::RenderObject::RenderCommand::RenderCommandFactory::CreateSetDescriptor(RenderCommandQueue& commandQueue, unsigned int rootParameterIndex, unsigned int descriptorOffset, const Microsoft::WRL::ComPtr<ID3D12Resource>& useResource)
+void Crown::RenderObject::RenderCommand::RenderCommandFactory::CreateSetPipelineState(std::vector<std::shared_ptr<RenderCommandBase>>& commandQueue, const Microsoft::WRL::ComPtr<ID3D12PipelineState>& pipelineState)
 {
-	commandQueue.AddCommand(new SetDescriptor(descriptorOffset, rootParameterIndex, useResource));
+	commandQueue.emplace_back(std::make_shared<SetPipelineState>(pipelineState));
 }
 
-void Crown::RenderObject::RenderCommand::RenderCommandFactory::CreateSetRootSignature(RenderCommandQueue& commandQueue, const Microsoft::WRL::ComPtr<ID3D12RootSignature>& rootSignature)
+void Crown::RenderObject::RenderCommand::RenderCommandFactory::CreateSetVertexBuffer(std::vector<std::shared_ptr<RenderCommandBase>>& commandQueue, UINT startSlot, UINT numViews, D3D12_VERTEX_BUFFER_VIEW* vertexBufferView)
 {
-	commandQueue.AddCommand(new SetRootSignature(rootSignature));
+	commandQueue.emplace_back(std::make_shared<SetVertexBuffer>(startSlot, numViews, vertexBufferView));
 }
 
-void Crown::RenderObject::RenderCommand::RenderCommandFactory::CreateSetPipelineState(RenderCommandQueue& commandQueue, const Microsoft::WRL::ComPtr<ID3D12PipelineState>& pipelineState)
+void Crown::RenderObject::RenderCommand::RenderCommandFactory::CreateSetIndexBuffer(std::vector<std::shared_ptr<RenderCommandBase>>& commandQueue, D3D12_INDEX_BUFFER_VIEW* indexBufferView)
 {
-	commandQueue.AddCommand(new SetPipelineState(pipelineState));
+	commandQueue.emplace_back(std::make_shared<SetIndexBuffer>(indexBufferView));
 }
 
-void Crown::RenderObject::RenderCommand::RenderCommandFactory::CreateSetVertexBuffer(RenderCommandQueue& commandQueue, UINT startSlot, UINT numViews, D3D12_VERTEX_BUFFER_VIEW* vertexBufferView, const Microsoft::WRL::ComPtr<ID3D12Resource>& vertexBuffer)
+void Crown::RenderObject::RenderCommand::RenderCommandFactory::CreateSetPrimitiveTopology(std::vector<std::shared_ptr<RenderCommandBase>>& commandQueue, D3D12_PRIMITIVE_TOPOLOGY primitiveTopology)
 {
-	commandQueue.AddCommand(new SetVertexBuffer(startSlot, numViews, vertexBufferView, vertexBuffer));
-}
-
-void Crown::RenderObject::RenderCommand::RenderCommandFactory::CreateSetIndexBuffer(RenderCommandQueue& commandQueue, D3D12_INDEX_BUFFER_VIEW* indexBufferView, const Microsoft::WRL::ComPtr<ID3D12Resource>& indexBuffer)
-{
-	commandQueue.AddCommand(new SetIndexBuffer(indexBufferView, indexBuffer));
-}
-
-void Crown::RenderObject::RenderCommand::RenderCommandFactory::CreateSetPrimitiveTopology(RenderCommandQueue& commandQueue, D3D12_PRIMITIVE_TOPOLOGY primitiveTopology)
-{
-	commandQueue.AddCommand(new SetPrimitiveTopology(primitiveTopology));
+	commandQueue.emplace_back(std::make_shared<SetPrimitiveTopology>(primitiveTopology));
 }

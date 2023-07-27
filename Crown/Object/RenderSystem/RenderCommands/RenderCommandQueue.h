@@ -24,13 +24,15 @@ namespace Crown
 			{
 			public:
 				RenderCommandQueue();
+				RenderCommandQueue(ID3D12Device* device, std::vector<std::shared_ptr<RenderCommandBase>>& renderCommands,  const std::vector<Microsoft::WRL::ComPtr<ID3D12Resource>>& useResource);
 				~RenderCommandQueue();
 
-				void AddCommand(RenderCommandBase* command);
 				void Run(GraphicsCommandList& commandList);
 			private:
-				bool loakFlag = false;
-				std::vector<std::shared_ptr<RenderCommandBase>> m_renderCommands;
+				bool m_valid;
+				Microsoft::WRL::ComPtr<ID3D12CommandAllocator> m_bundleCommandAllocator;
+				Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> m_bundleCommandList;
+				std::vector<Microsoft::WRL::ComPtr<ID3D12Resource>> m_useResource;			//	このレンタリングコマンドで使用するリソースへのポインターだよ☆
 			};
 		}
 	}

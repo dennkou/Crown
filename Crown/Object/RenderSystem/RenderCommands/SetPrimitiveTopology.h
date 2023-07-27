@@ -23,7 +23,7 @@ namespace Crown
 
 				virtual void Load(FILE* file) override;
 				virtual void Write(FILE* file) override;
-				virtual void Run(GraphicsCommandList& commandList) override;
+				virtual void Run(ID3D12GraphicsCommandList* commandList) override;
 			private:
 				D3D12_PRIMITIVE_TOPOLOGY m_primitiveTopology;
 			};

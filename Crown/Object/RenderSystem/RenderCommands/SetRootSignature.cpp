@@ -22,7 +22,7 @@ void Crown::RenderObject::RenderCommand::SetRootSignature::Write(FILE* file)
 
 }
 
-void Crown::RenderObject::RenderCommand::SetRootSignature::Run(GraphicsCommandList& commandList)
+void Crown::RenderObject::RenderCommand::SetRootSignature::Run(ID3D12GraphicsCommandList* commandList)
 {
-	commandList.GetGraphicsCommandList()->SetGraphicsRootSignature(m_rootSignature.Get());
+	commandList->SetGraphicsRootSignature(m_rootSignature.Get());
 }

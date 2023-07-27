@@ -20,7 +20,7 @@ void Crown::RenderObject::RenderCommand::SetPipelineState::Write(FILE* file)
 
 }
 
-void Crown::RenderObject::RenderCommand::SetPipelineState::Run(GraphicsCommandList& commandList)
+void Crown::RenderObject::RenderCommand::SetPipelineState::Run(ID3D12GraphicsCommandList* commandList)
 {
-	commandList.GetGraphicsCommandList()->SetPipelineState(m_pipelineState.Get());
+	commandList->SetPipelineState(m_pipelineState.Get());
 }

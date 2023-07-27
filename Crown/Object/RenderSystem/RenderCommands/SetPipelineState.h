@@ -2,6 +2,7 @@
 #ifndef CROWN_RENDEROBJECT_RENDERCOMMAND_SETPIPELINESTATE
 #define CROWN_RENDEROBJECT_RENDERCOMMAND_SETPIPELINESTATE
 #include "RenderCommandBase.h"
+#include <wrl.h>
 namespace Crown
 {
 	namespace RenderObject
@@ -23,7 +24,7 @@ namespace Crown
 
 				virtual void Load(FILE* file) override;
 				virtual void Write(FILE* file) override;
-				virtual void Run(GraphicsCommandList& commandList) override;
+				virtual void Run(ID3D12GraphicsCommandList* commandList) override;
 
 			private:
 				const Microsoft::WRL::ComPtr<ID3D12PipelineState> m_pipelineState;

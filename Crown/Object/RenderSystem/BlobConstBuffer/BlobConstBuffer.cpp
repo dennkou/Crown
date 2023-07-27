@@ -17,13 +17,13 @@ Crown::RenderObject::BlobConstBuffer::BlobConstBuffer(std::vector<DataType>& dat
 
 	//	バッファの作成を行うよ☆
 	D3D12_HEAP_PROPERTIES heapProperties = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
-	D3D12_RESOURCE_DESC resourceDesc = CD3DX12_RESOURCE_DESC::Buffer(ResourceUploader::GetInstance()->Get255AlignmentSize<byte>(bufferSize));
+	D3D12_RESOURCE_DESC resourceDesc = CD3DX12_RESOURCE_DESC::Buffer(ResourceUploader::GetInstance()->Get255AlignmentSize<byte>(static_cast<unsigned int>(bufferSize)));
 	device->CreateCommittedResource(&heapProperties, D3D12_HEAP_FLAG_NONE, &resourceDesc, D3D12_RESOURCE_STATE_COMMON, nullptr, IID_PPV_ARGS(&m_constantBuffer));
 
 	//	ディスクリプタの作成を行うよ☆
 	D3D12_CONSTANT_BUFFER_VIEW_DESC constantBufferViewDesc = {};
 	constantBufferViewDesc.BufferLocation = m_constantBuffer->GetGPUVirtualAddress();
-	constantBufferViewDesc.SizeInBytes = ResourceUploader::GetInstance()->Get255AlignmentSize<byte>(bufferSize);
+	constantBufferViewDesc.SizeInBytes = static_cast<UINT>(ResourceUploader::GetInstance()->Get255AlignmentSize<byte>(static_cast<unsigned int>(bufferSize)));
 	m_descriptorOffset = DescriptorHeaps::GetInstance().CreateConstantBufferView(constantBufferViewDesc);
 }
 
@@ -45,7 +45,7 @@ byte* Crown::RenderObject::BlobConstBuffer::GetDataPointer(unsigned int paramete
 
 void Crown::RenderObject::BlobConstBuffer::UploadConstantBuffer()
 {
-	ResourceUploader::GetInstance()->UploadData<byte>(m_constantBuffer.Get(), ResourceUploader::GetInstance()->Get255AlignmentSize<byte>(m_constantBufferData.size()), [&](byte* mapPointer)
+	ResourceUploader::GetInstance()->UploadData<byte>(m_constantBuffer.Get(), ResourceUploader::GetInstance()->Get255AlignmentSize<byte>(static_cast<unsigned int>(m_constantBufferData.size())), [&](byte* mapPointer)
 		{
 			for (unsigned int i = 0, size = static_cast<unsigned int>(m_constantBufferData.size()); i < size; ++i)
 			{

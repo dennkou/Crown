@@ -18,15 +18,14 @@ namespace Crown
 			class SetIndexBuffer : public RenderCommandBase
 			{
 			public:
-				SetIndexBuffer(D3D12_INDEX_BUFFER_VIEW* indexBufferView, Microsoft::WRL::ComPtr<ID3D12Resource> indexBuffer);
+				SetIndexBuffer(D3D12_INDEX_BUFFER_VIEW* indexBufferView);
 				virtual ~SetIndexBuffer();
 
 				virtual void Load(FILE* file) override;
 				virtual void Write(FILE* file) override;
-				virtual void Run(GraphicsCommandList& commandList) override;
+				virtual void Run(ID3D12GraphicsCommandList* commandList) override;
 			private:
 				D3D12_INDEX_BUFFER_VIEW* m_indexBufferView;
-				Microsoft::WRL::ComPtr<ID3D12Resource> m_indexBuffer;
 			};
 		}
 	}

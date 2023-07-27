@@ -21,8 +21,8 @@ void Crown::RenderObject::RenderCommand::SetDescriptorHeap::Write(FILE* file)
 
 }
 
-void Crown::RenderObject::RenderCommand::SetDescriptorHeap::Run(GraphicsCommandList& commandList)
+void Crown::RenderObject::RenderCommand::SetDescriptorHeap::Run(ID3D12GraphicsCommandList* commandList)
 {
 	ID3D12DescriptorHeap* descriptorHeap = DescriptorHeaps::GetInstance().GetDescriptorHeap();
-	commandList.GetGraphicsCommandList()->SetDescriptorHeaps(1, &descriptorHeap);
+	commandList->SetDescriptorHeaps(1, &descriptorHeap);
 }

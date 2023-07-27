@@ -52,13 +52,13 @@ namespace Crown
 				CameraData() 
 					:
 					fovAngle(1.04719755f),
-					aspect(1280 / 720),
-					nearZ(0.01),
+					aspect(1280.0f / 720.0f),
+					nearZ(0.01f),
 					farZ(1000.0f),
-					view(DirectX::XMMatrixTranslation(0,10,-50)),
+					view(DirectX::XMMatrixTranslation(0,0,-20)),
 					projection(DirectX::XMMatrixPerspectiveFovLH(1.04719755f, 1.77777777f, 0.01f, 1000.0f)),
 					viewProjection(projection * view),
-					eye(DirectX::XMFLOAT3(0, 0, 0))
+					eye(DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f))
 				{
 				}
 			};

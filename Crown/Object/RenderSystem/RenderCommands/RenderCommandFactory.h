@@ -2,8 +2,11 @@
 #ifndef CROWN_RENDEROBJECT_RENDERCOMMAND_RENDERCOMMANDLIST
 #define CROWN_RENDEROBJECT_RENDERCOMMAND_RENDERCOMMANDLIST
 #include <d3d12.h>
-#include <iostream>
-#include "RenderCommandQueue.h"
+#include <wrl.h>
+#include <vector>
+#include <memory>
+#include "RenderCommandBase.h"
+
 namespace Crown
 {
 	namespace RenderObject
@@ -23,16 +26,13 @@ namespace Crown
 				RenderCommandFactory();
 				~RenderCommandFactory();
 
-				static void Load(FILE* file, RenderCommandQueue& commandQueue);
-				static void Write(FILE* file, RenderCommandQueue* commandQueue);
-
-				static void CreateSetDescriptorHeap(RenderCommandQueue& commandQueue);
-				static void CreateSetDescriptor(RenderCommandQueue& commandQueue, unsigned int rootParameterIndex, unsigned int descriptorOffset, const Microsoft::WRL::ComPtr<ID3D12Resource>& useResource);
-				static void CreateSetRootSignature(RenderCommandQueue& commandQueue, const Microsoft::WRL::ComPtr<ID3D12RootSignature>& rootSignature);
-				static void CreateSetPipelineState(RenderCommandQueue& commandQueue, const Microsoft::WRL::ComPtr<ID3D12PipelineState>& pipelineState);
-				static void CreateSetVertexBuffer(RenderCommandQueue& commandQueue, UINT startSlot, UINT numViews, D3D12_VERTEX_BUFFER_VIEW* vertexBufferView, const Microsoft::WRL::ComPtr<ID3D12Resource>& vertexBuffer);
-				static void CreateSetIndexBuffer(RenderCommandQueue& commandQueue, D3D12_INDEX_BUFFER_VIEW* indexBufferView, const Microsoft::WRL::ComPtr<ID3D12Resource>& indexBuffer);
-				static void CreateSetPrimitiveTopology(RenderCommandQueue& commandQueue, D3D12_PRIMITIVE_TOPOLOGY primitiveTopology);
+				static void CreateSetDescriptorHeap(std::vector<std::shared_ptr<RenderCommandBase>>& commandQueue);
+				static void CreateSetDescriptor(std::vector<std::shared_ptr<RenderCommandBase>>& commandQueue, unsigned int rootParameterIndex, unsigned int descriptorOffset);
+				static void CreateSetRootSignature(std::vector<std::shared_ptr<RenderCommandBase>>& commandQueue, const Microsoft::WRL::ComPtr<ID3D12RootSignature>& rootSignature);
+				static void CreateSetPipelineState(std::vector<std::shared_ptr<RenderCommandBase>>& commandQueue, const Microsoft::WRL::ComPtr<ID3D12PipelineState>& pipelineState);
+				static void CreateSetVertexBuffer(std::vector<std::shared_ptr<RenderCommandBase>>& commandQueue, UINT startSlot, UINT numViews, D3D12_VERTEX_BUFFER_VIEW* vertexBufferView);
+				static void CreateSetIndexBuffer(std::vector<std::shared_ptr<RenderCommandBase>>& commandQueue, D3D12_INDEX_BUFFER_VIEW* indexBufferView);
+				static void CreateSetPrimitiveTopology(std::vector<std::shared_ptr<RenderCommandBase>>& commandQueue, D3D12_PRIMITIVE_TOPOLOGY primitiveTopology);
 			private:
 			};
 		}

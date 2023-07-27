@@ -1,9 +1,8 @@
 #include "SetIndexBuffer.h"
 
-Crown::RenderObject::RenderCommand::SetIndexBuffer::SetIndexBuffer(D3D12_INDEX_BUFFER_VIEW* indexBufferView, Microsoft::WRL::ComPtr<ID3D12Resource> indexBuffer)
+Crown::RenderObject::RenderCommand::SetIndexBuffer::SetIndexBuffer(D3D12_INDEX_BUFFER_VIEW* indexBufferView)
 	:
-	m_indexBufferView(indexBufferView),
-	m_indexBuffer(indexBuffer)
+	m_indexBufferView(indexBufferView)
 {
 }
 
@@ -19,8 +18,7 @@ void Crown::RenderObject::RenderCommand::SetIndexBuffer::Write(FILE* file)
 {
 }
 
-void Crown::RenderObject::RenderCommand::SetIndexBuffer::Run(GraphicsCommandList& commandList)
+void Crown::RenderObject::RenderCommand::SetIndexBuffer::Run(ID3D12GraphicsCommandList* commandList)
 {
-	commandList.GetGraphicsCommandList()->IASetIndexBuffer(m_indexBufferView);
-	commandList.LockResource(m_indexBuffer);
+	commandList->IASetIndexBuffer(m_indexBufferView);
 }

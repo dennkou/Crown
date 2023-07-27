@@ -68,9 +68,9 @@ void Crown::RenderObject::RenderSystem::Initialize()
 		//	Direct3Dデバイスの初期化だよ☆
 		D3D12CreateDevice(selectAdapter.Get(), level, IID_PPV_ARGS(&m_device));		//	D3D12Deviceの作成だよ☆
 	}
-	m_commandList.Initialize(m_device.Get(), 10, 0);
+	m_commandList.Initialize(m_device.Get(), 1, 0);
 	m_swapChain.Initialize(m_device.Get(), &m_renderTargetWindow, m_commandList.GetCommandQueue(), 2);
-	ResourceUploader::CreateResourceUploader(m_device.Get(), &m_commandList);
+	ResourceUploader::CreateResourceUploader(m_device.Get(), m_commandList);
 	DescriptorHeaps::CreateDescriptorHeaps(m_device.Get());
 	m_textureBuffer.Initialize(m_device.Get(),m_commandList.GetCopyCommandList(), &DescriptorHeaps::GetInstance());
 	m_modelManager.Initialize(m_device.Get(), &m_textureBuffer);
@@ -96,9 +96,7 @@ void Crown::RenderObject::RenderSystem::Update()
 	m_commandList.GetGraphicsCommandList()->OMSetRenderTargets(1, &rtvH, false, &CPU_DESCRIPTOR_HANDLE);																	//	レンダーターゲットを指定するよ☆
 
 	//	画面を初期化☆
-	static float timer = 0;
-	float clearColor[4] = { timer,1.0f,1.0f,1.0f };
-	timer += 0.01f;
+	float clearColor[4] = { 1.0f,1.0f,1.0f,1.0f };
 	m_commandList.GetGraphicsCommandList()->ClearRenderTargetView(rtvH, clearColor, 0, nullptr);
 	m_commandList.GetGraphicsCommandList()->ClearDepthStencilView(CPU_DESCRIPTOR_HANDLE, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
 
@@ -118,6 +116,8 @@ void Crown::RenderObject::RenderSystem::Update()
 
 	m_commandList.GetGraphicsCommandList()->RSSetViewports(1, &viewport);
 	m_commandList.GetGraphicsCommandList()->RSSetScissorRects(1, &scissorrect);
+	ID3D12DescriptorHeap* descriptorHeap = DescriptorHeaps::GetInstance().GetDescriptorHeap();
+	m_commandList.GetGraphicsCommandList()->SetDescriptorHeaps(1, &descriptorHeap);
 
 
 
@@ -130,9 +130,9 @@ void Crown::RenderObject::RenderSystem::Update()
 		CD3DX12_RESOURCE_BARRIER tmp = CD3DX12_RESOURCE_BARRIER::Transition(m_swapChain.GetBackBuffer(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);	//	リソースバリアをの設定をすべてに使用可能にするよ☆
 		m_commandList.GetGraphicsCommandList()->ResourceBarrier(1, &tmp);
 	}
-	m_commandList.RunCommandList();
+	m_commandList.RunAndWait();
 	ResourceUploader::GetInstance()->DeleteUploadResource();
-	m_swapChain.Present(1);
+	m_swapChain.Present(0);
 
 	DescriptorHeaps::GetInstance().ResetDescriptorHeapFlag();
 }

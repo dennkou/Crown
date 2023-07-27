@@ -21,7 +21,7 @@ namespace Crown
 		class ResourceUploader
 		{
 		public:
-			static void CreateResourceUploader(ID3D12Device* device, GraphicsCommandList* commandList);
+			static void CreateResourceUploader(ID3D12Device* device, GraphicsCommandList& commandList);
 			static ResourceUploader* GetInstance();
 			static void DeleteInstance();
 
@@ -53,8 +53,6 @@ namespace Crown
 
 			ID3D12Device* m_device;
 			GraphicsCommandList* m_commandList;
-			std::vector<Microsoft::WRL::ComPtr<ID3D12Resource>> uploadResource[2];
-			unsigned int m_bufferIndex;
 		};
 
 		template<typename DataType>
@@ -71,7 +69,7 @@ namespace Crown
 			upload->Unmap(0, nullptr);
 
 			m_commandList->GetCopyCommandList()->CopyBufferRegion(uploadTarget, 0, upload.Get(), 0, dataSize);
-			uploadResource[m_bufferIndex].emplace_back(upload);
+			m_commandList->LockResource(upload);
 		}
 	}
 }

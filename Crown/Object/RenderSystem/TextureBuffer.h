@@ -40,6 +40,12 @@ namespace Crown
 			unsigned int TextureAcquisition(std::wstring filePath);
 
 			/// <summary>
+			/// テクスチャのバッファを取得するよ☆
+			/// </summary>
+			/// <returns></returns>
+			const Microsoft::WRL::ComPtr<ID3D12Resource> GetTextureBuffer(unsigned int offset);
+
+			/// <summary>
 			/// 渡されたRGBA配列をテクスチャとして登録するよ☆
 			/// </summary>
 			/// <param name="dataName"></param>

@@ -18,7 +18,7 @@ void Crown::RenderObject::RenderCommand::SetPrimitiveTopology::Write(FILE* file)
 {
 }
 
-void Crown::RenderObject::RenderCommand::SetPrimitiveTopology::Run(GraphicsCommandList& commandList)
+void Crown::RenderObject::RenderCommand::SetPrimitiveTopology::Run(ID3D12GraphicsCommandList* commandList)
 {
-	commandList.GetGraphicsCommandList()->IASetPrimitiveTopology(m_primitiveTopology);
+	commandList->IASetPrimitiveTopology(m_primitiveTopology);
 }

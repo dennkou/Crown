@@ -19,6 +19,7 @@ Crown::RenderObject::GraphicsCommandList::GraphicsCommandList()
 Crown::RenderObject::GraphicsCommandList::~GraphicsCommandList()
 {
 	RunAndWait();
+	WaitForGpu();
 	m_graphicsCommandList->Close();
 	m_copyCommandList->Close();
 	CloseHandle(m_waitEvent);

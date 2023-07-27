@@ -47,7 +47,7 @@ namespace Crown
 			void SetParameter(unsigned int parameterIndex, Data data);
 
 			inline unsigned int GetDescriptorOffset() { return m_descriptorOffset; }
-
+			inline const Microsoft::WRL::ComPtr<ID3D12Resource> GetBuffer() { return m_constantBuffer; }
 		private:
 			byte* GetDataPointer(unsigned int parameterIndex);
 			void UploadConstantBuffer();

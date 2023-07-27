@@ -5,6 +5,10 @@
 #pragma comment(lib,"DirectXTex.lib")
 
 Crown::RenderObject::TextureBuffer::TextureBuffer()
+	:
+	m_device(),
+	m_descriptorHeap(),
+	m_copyCommandList()
 {
 }
 
@@ -17,9 +21,23 @@ void Crown::RenderObject::TextureBuffer::Initialize(ID3D12Device* device, ID3D12
 	m_device = device;
 	m_descriptorHeap = descriptorHeap;
 	m_copyCommandList = copyCommandList;
-	RGBA white[4] = { (1,1,1,1),(1,1,1,1),(1,1,1,1),(1,1,1,1) };
+	RGBA white[2 * 2] = {};
+	for (int i = 0; i < 2 * 2; ++i)
+	{
+		white[i].r = 255;
+		white[i].g = 255;
+		white[i].b = 255;
+		white[i].a = 255;
+	}
 	CreateTextureData(L"白テクスチャ", 2, 2, white);
-	RGBA black[4] = { (1,1,1,1),(1,1,1,1),(1,1,1,1),(1,1,1,1) };
+	RGBA black[2 * 2] = {};
+	for (int i = 0; i < 2 * 2; ++i)
+	{
+		black[i].r = 0;
+		black[i].g = 0;
+		black[i].b = 0;
+		black[i].a = 255;
+	}
 	CreateTextureData(L"黒テクスチャ", 2, 2, black);
 }
 
@@ -38,11 +56,17 @@ unsigned int Crown::RenderObject::TextureBuffer::TextureAcquisition(std::wstring
 		{
 			//	読み込めなかったからエラーを返すよ☆
 			assert(0);
-			return -1;
+			return 0;
 		}
 	}
 
     return m_textureDescriptorHeapOffsets[filePath];
+}
+
+const Microsoft::WRL::ComPtr<ID3D12Resource> Crown::RenderObject::TextureBuffer::GetTextureBuffer(unsigned int offset)
+{
+	assert(m_resources.find(offset) != m_resources.end());
+	return m_resources[offset];
 }
 
 void Crown::RenderObject::TextureBuffer::CreateTextureData(std::wstring dataName, UINT width, UINT height, RGBA* data)

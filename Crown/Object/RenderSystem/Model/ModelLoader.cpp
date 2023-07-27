@@ -6,6 +6,9 @@
 #include "./../DirectX12Wraps/RootSignature.h"
 #include "./../Shader.h"
 #include "./../Camera.h"
+#include "d3dx12.h"
+#include "./../DirectX12Wraps/ResourceUploader.h"
+#include "./../../StringAlgorithm.h"
 
 
 Crown::RenderObject::RootSignature Crown::RenderObject::Model::ModelLoader::rootSignature;
@@ -37,6 +40,19 @@ void Crown::RenderObject::Model::ModelLoader::Load(ID3D12Device* device, Texture
 		graphicsPipeline.SetVS(*Shader::GetInstance()->GetShader(L"PMD/DefaultVertexShader"));
 		graphicsPipeline.SetPS(*Shader::GetInstance()->GetShader(L"PMD/DefaultPixelShader"));
 		graphicsPipeline.SetRootSignature(rootSignature.GetRootSignature().Get());
+	}
+	if (m_model.m_resource.Get() == nullptr)	//	モデルデータ用のバッファがなければ作成☆
+	{
+		D3D12_HEAP_PROPERTIES heapProperties = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
+		D3D12_RESOURCE_DESC resourceDesc = CD3DX12_RESOURCE_DESC::Buffer(ResourceUploader::GetInstance()->Get255AlignmentSize<Model::ModelData>());
+		device->CreateCommittedResource(&heapProperties, D3D12_HEAP_FLAG_NONE, &resourceDesc, D3D12_RESOURCE_STATE_COMMON, nullptr, IID_PPV_ARGS(&m_model.m_resource));
+		m_model.DataUpload();
+
+		//	ディスクリプタの作成を行うよ☆
+		D3D12_CONSTANT_BUFFER_VIEW_DESC constantBufferViewDesc = {};
+		constantBufferViewDesc.BufferLocation = m_model.m_resource->GetGPUVirtualAddress();
+		constantBufferViewDesc.SizeInBytes = static_cast<UINT>(ResourceUploader::GetInstance()->Get255AlignmentSize<Model::ModelData>());
+		m_model.m_descriptorOffset = DescriptorHeaps::GetInstance().CreateConstantBufferView(constantBufferViewDesc);
 	}
 	switch (m_loadMode)
 	{
@@ -120,19 +136,6 @@ void Crown::RenderObject::Model::ModelLoader::LoadPMD(ID3D12Device* device, Text
 		fread(&indexs[i], sizeof(unsigned short), 1, file);
 	}
 
-	//	テストコード☆
-	vertices[0].pos = DirectX::XMFLOAT3(-0.4f, -0.7f, 0.0f);
-	vertices[1].pos = DirectX::XMFLOAT3(-0.4f, 0.7f, 0.0f);
-	vertices[2].pos = DirectX::XMFLOAT3(0.4f, -0.7f, 0.0f);
-	vertices[3].pos = DirectX::XMFLOAT3(0.4f, 0.7f, 0.0f);
-
-	indexs[0] = 0;
-	indexs[1] = 1;
-	indexs[2] = 2;
-	indexs[3] = 2;
-	indexs[4] = 1;
-	indexs[5] = 3;
-
 	//	頂点バッファーとインデックスバッファーを作成するよ☆
 	m_model.m_vertices.CreateBuffer(device, vertices, indexs);
 
@@ -154,11 +157,11 @@ void Crown::RenderObject::Model::ModelLoader::LoadPMD(ID3D12Device* device, Text
 		//	スペキュラーパワーの読み込み☆
 		float specularity;
 		fread(&specularity, sizeof(float), 1, file);
-		bufferData.emplace_back(BlobConstBuffer::DataType::Float);
+		bufferData.emplace_back(BlobConstBuffer::DataType::Float3);
 		//	スペキュラーカラーの読み込み☆
 		DirectX::XMFLOAT3 specular;
 		fread(&specular, sizeof(DirectX::XMFLOAT3), 1, file);
-		bufferData.emplace_back(BlobConstBuffer::DataType::Float3);
+		bufferData.emplace_back(BlobConstBuffer::DataType::Float);
 		//	アンビエントカラーの読み込み☆
 		DirectX::XMFLOAT3 ambient;
 		fread(&ambient, sizeof(DirectX::XMFLOAT3), 1, file);
@@ -173,16 +176,58 @@ void Crown::RenderObject::Model::ModelLoader::LoadPMD(ID3D12Device* device, Text
 		unsigned int materialIndexNum = 0;
 		fread(&materialIndexNum, sizeof(unsigned int), 1, file);
 		//	テクスチャデータの読み込み☆
-		std::string texture;
-		texture.resize(20);
-		fread(texture.data(), sizeof(char), 20, file);
+		std::string tmp;
+		tmp.resize(20);
+		fread(tmp.data(), sizeof(char), 20, file);
+
+		//	トゥーンデータの解析開始～☆
+		std::wstring toonTexture;
+		toonTexture.resize(37);
+		swprintf_s(toonTexture.data(), 37, L"Resource/Texture/PmdTex/toon%02d.bmp", toon + 1);
+
+		//	テクスチャデータの解析開始☆
+		std::wstring texture = L"白テクスチャ";
+		std::wstring sph = L"白テクスチャ";
+		std::wstring spa = L"黒テクスチャ";
+		std::vector<std::wstring> textureData;							//	データ数だよ☆
+		size_t splitter = tmp.find('*');
+		if (splitter == -1)
+		{
+			textureData.push_back(StringAlgorithm::StringToWstring(tmp));
+		}
+		else
+		{
+			textureData.push_back(StringAlgorithm::StringToWstring(tmp.substr(0, splitter)));
+			textureData.push_back(StringAlgorithm::StringToWstring(tmp.substr(splitter + 1, tmp.length() - splitter - 1)));
+		}
+		for (size_t i = 0; i < textureData.size(); ++i)
+		{
+			size_t idx = textureData[i].rfind('.');
+			std::wstring extension = textureData[i].substr(idx + 1, textureData[i].length() - idx - 1);
+
+			if (extension.find(L"sph") != -1)
+			{
+				sph = L"Resource/Texture/PmdTex/" + textureData[i];
+			}
+			else if (extension.find(L"spa") != -1)
+			{
+				spa = L"Resource/Texture/PmdTex/" + textureData[i];
+			}
+			else
+			{
+				if (!textureData[i].empty())
+				{
+					texture = L"Resource/Texture/PmdTex/" + textureData[i];
+				}
+			}
+		}
 
 		//	コンスタントバッファのデータ構造を決定＆データ代入☆
 		BlobConstBuffer constBuffer(bufferData, device);
 		constBuffer.SetParameter(0, diffuse);
 		constBuffer.SetParameter(1, alpha);
-		constBuffer.SetParameter(2, specularity);
-		constBuffer.SetParameter(3, specular);
+		constBuffer.SetParameter(2, specular);
+		constBuffer.SetParameter(3, specularity);
 		constBuffer.SetParameter(4, ambient);
 
 		//	PSOがなければ生成☆
@@ -193,16 +238,31 @@ void Crown::RenderObject::Model::ModelLoader::LoadPMD(ID3D12Device* device, Text
 		}
 
 		//	マテリアル描画の仕方を決定☆
-		RenderCommand::RenderCommandQueue pmdRenderCommandQueue;
-		RenderCommand::RenderCommandFactory::CreateSetRootSignature(pmdRenderCommandQueue, rootSignature.GetRootSignature());
-		RenderCommand::RenderCommandFactory::CreateSetPrimitiveTopology(pmdRenderCommandQueue, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		RenderCommand::RenderCommandFactory::CreateSetVertexBuffer(pmdRenderCommandQueue, 0, 1, m_model.m_vertices.GetVertexBufferView(), m_model.m_vertices.GetConstVertexBuffer());
-		RenderCommand::RenderCommandFactory::CreateSetIndexBuffer(pmdRenderCommandQueue, m_model.m_vertices.GetIndexBufferView(), m_model.m_vertices.GetConstIndexBuffer());
-		RenderCommand::RenderCommandFactory::CreateSetDescriptorHeap(pmdRenderCommandQueue);
-		RenderCommand::RenderCommandFactory::CreateSetDescriptor(pmdRenderCommandQueue, 0, Camera::GetInstance()->GetDescriptorOffset(), Camera::GetInstance()->GetConstConstBuffer());
-		//RenderCommand::RenderCommandFactory::CreateSetDescriptor(pmdRenderCommandQueue, 2, constBuffer.GetDescriptorOffset());
-		//RenderCommand::RenderCommandFactory::CreateSetDescriptor(pmdRenderCommandQueue, 4, textureBuffer->TextureAcquisition(L"黒テクスチャ"));
-		RenderCommand::RenderCommandFactory::CreateSetPipelineState(pmdRenderCommandQueue, graphicsPipeline.GetPipelineState());
+		std::vector<std::shared_ptr<RenderCommand::RenderCommandBase>> renderCommands;
+		RenderCommand::RenderCommandFactory::CreateSetRootSignature(renderCommands, rootSignature.GetRootSignature());
+		RenderCommand::RenderCommandFactory::CreateSetPrimitiveTopology(renderCommands, D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		RenderCommand::RenderCommandFactory::CreateSetVertexBuffer(renderCommands, 0, 1, m_model.m_vertices.GetVertexBufferView());
+		RenderCommand::RenderCommandFactory::CreateSetIndexBuffer(renderCommands, m_model.m_vertices.GetIndexBufferView());
+		RenderCommand::RenderCommandFactory::CreateSetDescriptorHeap(renderCommands);
+		RenderCommand::RenderCommandFactory::CreateSetDescriptor(renderCommands, 0, Camera::GetInstance()->GetDescriptorOffset());
+		RenderCommand::RenderCommandFactory::CreateSetDescriptor(renderCommands, 1, m_model.m_descriptorOffset);
+		RenderCommand::RenderCommandFactory::CreateSetDescriptor(renderCommands, 2, constBuffer.GetDescriptorOffset());
+		RenderCommand::RenderCommandFactory::CreateSetDescriptor(renderCommands, 3, textureBuffer->TextureAcquisition(texture));
+		RenderCommand::RenderCommandFactory::CreateSetDescriptor(renderCommands, 4, textureBuffer->TextureAcquisition(sph));
+		RenderCommand::RenderCommandFactory::CreateSetDescriptor(renderCommands, 5, textureBuffer->TextureAcquisition(spa));
+		RenderCommand::RenderCommandFactory::CreateSetDescriptor(renderCommands, 6, textureBuffer->TextureAcquisition(toonTexture));
+		std::vector<Microsoft::WRL::ComPtr<ID3D12Resource>> resources;
+		resources.emplace_back(m_model.m_vertices.GetConstVertexBuffer());
+		resources.emplace_back(m_model.m_vertices.GetConstIndexBuffer());
+		resources.emplace_back(Camera::GetInstance()->GetConstConstBuffer());
+		resources.emplace_back(m_model.m_resource);
+		resources.emplace_back(constBuffer.GetBuffer());
+		resources.emplace_back(textureBuffer->GetTextureBuffer(textureBuffer->TextureAcquisition(texture)));
+		resources.emplace_back(textureBuffer->GetTextureBuffer(textureBuffer->TextureAcquisition(sph)));
+		resources.emplace_back(textureBuffer->GetTextureBuffer(textureBuffer->TextureAcquisition(spa)));
+		resources.emplace_back(textureBuffer->GetTextureBuffer(textureBuffer->TextureAcquisition(toonTexture)));
+		RenderCommand::RenderCommandFactory::CreateSetPipelineState(renderCommands, graphicsPipeline.GetPipelineState());
+		RenderCommand::RenderCommandQueue pmdRenderCommandQueue(device, renderCommands, resources);
 
 		//	定数配列を作成☆
 		std::vector<BlobConstBuffer> constbuffers;

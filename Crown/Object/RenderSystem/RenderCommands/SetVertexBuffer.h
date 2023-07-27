@@ -18,17 +18,16 @@ namespace Crown
 			class SetVertexBuffer	:	public RenderCommandBase
 			{
 			public:
-				SetVertexBuffer(UINT startSlot, UINT numViews, D3D12_VERTEX_BUFFER_VIEW* vertexBufferView, Microsoft::WRL::ComPtr<ID3D12Resource> vertexBuffer);
+				SetVertexBuffer(UINT startSlot, UINT numViews, D3D12_VERTEX_BUFFER_VIEW* vertexBufferView);
 				virtual ~SetVertexBuffer();
 
 				virtual void Load(FILE* file) override;
 				virtual void Write(FILE* file) override;
-				virtual void Run(GraphicsCommandList& commandList) override;
+				virtual void Run(ID3D12GraphicsCommandList* commandList) override;
 			private:
 				UINT m_startSlot;
 				UINT m_numViews;
 				D3D12_VERTEX_BUFFER_VIEW* m_vertexBufferView;
-				Microsoft::WRL::ComPtr<ID3D12Resource> m_vertexBuffer;
 			};
 		}
 	}

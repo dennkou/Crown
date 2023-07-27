@@ -18,16 +18,15 @@ namespace Crown
 			class SetDescriptor : public RenderCommandBase
 			{
 			public:
-				SetDescriptor(unsigned int descriptorOffset, unsigned int rootParameterIndex, const Microsoft::WRL::ComPtr<ID3D12Resource>& useResource);
+				SetDescriptor(unsigned int descriptorOffset, unsigned int rootParameterIndex);
 				virtual ~SetDescriptor();
 
 				void Load(FILE* file) override;
 				void Write(FILE* file) override;
-				void Run(GraphicsCommandList& commandList) override;
+				void Run(ID3D12GraphicsCommandList* commandList) override;
 			private:
 				unsigned int m_offset;
 				unsigned int m_rootParameterIndex;
-				const Microsoft::WRL::ComPtr<ID3D12Resource> m_useResource;
 			};
 		}
 	}

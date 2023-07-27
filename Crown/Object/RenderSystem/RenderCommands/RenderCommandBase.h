@@ -3,7 +3,6 @@
 #define CROWN_RENDEROBJECT_RENDERCOMMAND_RENDERCOMMANDBASE
 #include <d3d12.h>
 #include <iostream>
-#include "./../DirectX12Wraps/GraphicsCommandList.h"
 namespace Crown
 {
 	namespace RenderObject
@@ -25,7 +24,7 @@ namespace Crown
 
 				virtual void Load(FILE* file) = 0;
 				virtual void Write(FILE* file) = 0;
-				virtual void Run(GraphicsCommandList& commandList) = 0;
+				virtual void Run(ID3D12GraphicsCommandList* commandList) = 0;
 			private:
 			};
 		}

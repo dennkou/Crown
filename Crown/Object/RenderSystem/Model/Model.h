@@ -37,13 +37,25 @@ namespace Crown
 
 			void LoadPMD(const std::wstring& fileName);
 
+			inline unsigned int GetDescriptorOffest() { return m_descriptorOffset; }
+			inline const Microsoft::WRL::ComPtr<ID3D12Resource>& GetModelData() { return m_resource; }
+
 			void Draw(MaterialTag drawTag, GraphicsCommandList& commandList);
 		private:
+			struct ModelData
+			{
+				DirectX::XMMATRIX m_world;
+				DirectX::XMMATRIX m_bone[255];
+			};
+
+			void DataUpload();
+
 			DirectX::XMFLOAT3 m_position;
 			DirectX::XMFLOAT3 m_rotate;
 
 			Vertices m_vertices;
 			std::vector<MaterialMesh> m_materialMeshs;
+			unsigned int m_descriptorOffset;
 			Microsoft::WRL::ComPtr<ID3D12Resource> m_resource;
 		};
 	}

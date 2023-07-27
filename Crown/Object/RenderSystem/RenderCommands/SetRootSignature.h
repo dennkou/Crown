@@ -2,6 +2,7 @@
 #ifndef CROWN_RENDEROBJECT_RENDERCOMMAND_SETROOTSIGNATURE
 #define CROWN_RENDEROBJECT_RENDERCOMMAND_SETROOTSIGNATURE
 #include "RenderCommandBase.h"
+#include <wrl.h>
 namespace Crown
 {
 	namespace RenderObject
@@ -16,7 +17,7 @@ namespace Crown
 
 				virtual void Load(FILE* file) override;
 				virtual void Write(FILE* file) override;
-				virtual void Run(GraphicsCommandList& commandList) override;
+				virtual void Run(ID3D12GraphicsCommandList* commandList) override;
 			private:
 				Microsoft::WRL::ComPtr<ID3D12RootSignature> m_rootSignature;
 			};
