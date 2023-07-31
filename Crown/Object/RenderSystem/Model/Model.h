@@ -36,6 +36,7 @@ namespace Crown
 			inline void SetPosition(const DirectX::XMFLOAT3& position) { m_position = position; }
 
 			void LoadPMD(const std::wstring& fileName);
+			void LoadPMX(const std::wstring& fileName);
 
 			inline unsigned int GetDescriptorOffest() { return m_descriptorOffset; }
 			inline const Microsoft::WRL::ComPtr<ID3D12Resource>& GetModelData() { return m_resource; }

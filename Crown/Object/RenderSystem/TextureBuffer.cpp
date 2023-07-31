@@ -39,6 +39,15 @@ void Crown::RenderObject::TextureBuffer::Initialize(ID3D12Device* device, ID3D12
 		black[i].a = 255;
 	}
 	CreateTextureData(L"黒テクスチャ", 2, 2, black);
+	RGBA grayGradation[2 * 256] = {};
+	for (int i = 0; i < 2 * 256; ++i)
+	{
+		grayGradation[i].r = i>>1;
+		grayGradation[i].g = i>>1;
+		grayGradation[i].b = i>>1;
+		grayGradation[i].a = 255;
+	}
+	CreateTextureData(L"グレイグラデーションテクスチャ", 2, 256, grayGradation);
 }
 
 unsigned int Crown::RenderObject::TextureBuffer::TextureAcquisition(std::wstring filePath)

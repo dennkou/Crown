@@ -49,7 +49,6 @@ namespace Crown
 			inline const Microsoft::WRL::ComPtr<ID3D12Resource> GetConstVertexBuffer()	{ return m_vertexBuffer; }
 			inline D3D12_INDEX_BUFFER_VIEW* GetIndexBufferView()						{ return &m_indexBufferView; }
 			inline const Microsoft::WRL::ComPtr<ID3D12Resource> GetConstIndexBuffer()	{ return m_indexBuffer; }
-			D3D12_INPUT_LAYOUT_DESC GetInputLayoutDesc();
 
 		private:
 			Microsoft::WRL::ComPtr<ID3D12Resource> m_vertexBuffer;
@@ -57,8 +56,6 @@ namespace Crown
 
 			Microsoft::WRL::ComPtr<ID3D12Resource> m_indexBuffer;
 			D3D12_INDEX_BUFFER_VIEW m_indexBufferView;
-
-			static const D3D12_INPUT_ELEMENT_DESC m_inputLayout[5];
 		};
 	}
 }

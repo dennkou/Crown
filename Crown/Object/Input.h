@@ -105,7 +105,6 @@ namespace Crown
 			virtual bool GetCenterButtonUp() const = 0;
 			virtual bool GetCenterButtonDown() const = 0;
 			virtual int GetCenterButtonDownTime() const = 0;
-
 		};
 		interface IMouseMessage
 		{

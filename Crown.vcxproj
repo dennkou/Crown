@@ -148,6 +148,7 @@
     <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\ResourceUploader.cpp" />
     <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\RootSignature.cpp" />
     <ClCompile Include="Crown\Object\RenderSystem\DirectX12Wraps\SwapChain.cpp" />
+    <ClCompile Include="Crown\Object\RenderSystem\Model\FileType\Pmd.cpp" />
     <ClCompile Include="Crown\Object\RenderSystem\Model\Material.cpp" />
     <ClCompile Include="Crown\Object\RenderSystem\Model\MaterialMesh.cpp" />
     <ClCompile Include="Crown\Object\RenderSystem\Model\Model.cpp" />
@@ -168,7 +169,11 @@
     <ClCompile Include="Crown\Object\RenderSystem\TextureBuffer.cpp" />
     <ClCompile Include="Crown\Object\Window.cpp" />
     <ClCompile Include="Crown\System.cpp" />
+    <ClCompile Include="Game\Box.cpp" />
     <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="Game\GameCamera.cpp" />
+    <ClCompile Include="Game\Player.cpp" />
+    <ClCompile Include="Game\Stage.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +187,7 @@
     <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\ResourceUploader.h" />
     <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\RootSignature.h" />
     <ClInclude Include="Crown\Object\RenderSystem\DirectX12Wraps\SwapChain.h" />
+    <ClInclude Include="Crown\Object\RenderSystem\Model\FileType\Pmd.h" />
     <ClInclude Include="Crown\Object\RenderSystem\Model\Material.h" />
     <ClInclude Include="Crown\Object\RenderSystem\Model\MaterialMesh.h" />
     <ClInclude Include="Crown\Object\RenderSystem\Model\Model.h" />
@@ -205,10 +211,14 @@
     <ClInclude Include="Crown\Object\StringAlgorithm.h" />
     <ClInclude Include="Crown\Object\Window.h" />
     <ClInclude Include="Crown\System.h" />
+    <ClInclude Include="Game\Box.h" />
     <ClInclude Include="Game\Game.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Game\GameCamera.h" />
+    <ClInclude Include="Game\Player.h" />
+    <ClInclude Include="Game\Stage.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ヘッダーテンプレート.txt" />

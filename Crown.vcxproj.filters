@@ -95,6 +95,21 @@
     <ClCompile Include="Crown\Object\RenderSystem\RenderCommands\SetPrimitiveTopology.cpp">
       <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
     </ClCompile>
+    <ClCompile Include="Game\GameCamera.cpp">
+      <Filter>Game\test</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player.cpp">
+      <Filter>Game\test</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Box.cpp">
+      <Filter>Game\test</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Stage.cpp">
+      <Filter>Game\test</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Object\RenderSystem\Model\FileType\Pmd.cpp">
+      <Filter>Crown\Object\RenderSystem\Model\FileType</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Crown">
@@ -129,6 +144,12 @@
     </Filter>
     <Filter Include="Crown\Shader">
       <UniqueIdentifier>{b308b916-f115-4ff9-b16a-4f5fd49f80f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\test">
+      <UniqueIdentifier>{9c845da8-6edb-4b78-8e2a-88a5f2684d3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crown\Object\RenderSystem\Model\FileType">
+      <UniqueIdentifier>{a50af839-4d7f-42ef-aae4-4a09f564a676}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +254,21 @@
     </ClInclude>
     <ClInclude Include="Crown\Object\RenderSystem\RenderCommands\SetPrimitiveTopology.h">
       <Filter>Crown\Object\RenderSystem\RenderCommands\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameCamera.h">
+      <Filter>Game\test</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player.h">
+      <Filter>Game\test</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Box.h">
+      <Filter>Game\test</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Stage.h">
+      <Filter>Game\test</Filter>
+    </ClInclude>
+    <ClInclude Include="Crown\Object\RenderSystem\Model\FileType\Pmd.h">
+      <Filter>Crown\Object\RenderSystem\Model\FileType</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -25,7 +25,7 @@ namespace Crown
 				virtual void Write(FILE* file) override;
 				virtual void Run(ID3D12GraphicsCommandList* commandList) override;
 			private:
-				D3D12_INDEX_BUFFER_VIEW* m_indexBufferView;
+				D3D12_INDEX_BUFFER_VIEW m_indexBufferView;
 			};
 		}
 	}

@@ -32,7 +32,7 @@ void Crown::Window::MakeWindow(std::wstring windowName, WNDPROC windowProcedure,
 
 	RegisterClassEx(&w);						//	ウィンドウクラスを登録するよ☆
 
-	RECT wrc = { 0,0, m_width, m_height };			//	ウィンドウサイズを決めるよ☆
+	RECT wrc = { 0,0, m_width, m_height };		//	ウィンドウサイズを決めるよ☆
 	AdjustWindowRect(&wrc, dwStyle, false);		//	クライアントサイズからウィンドウサイズを計算するよ☆
 	//ウィンドウオブジェクトの生成
 	m_hwnd = CreateWindow

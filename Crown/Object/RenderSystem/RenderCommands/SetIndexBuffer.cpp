@@ -2,7 +2,7 @@
 
 Crown::RenderObject::RenderCommand::SetIndexBuffer::SetIndexBuffer(D3D12_INDEX_BUFFER_VIEW* indexBufferView)
 	:
-	m_indexBufferView(indexBufferView)
+	m_indexBufferView(*indexBufferView)
 {
 }
 
@@ -20,5 +20,5 @@ void Crown::RenderObject::RenderCommand::SetIndexBuffer::Write(FILE* file)
 
 void Crown::RenderObject::RenderCommand::SetIndexBuffer::Run(ID3D12GraphicsCommandList* commandList)
 {
-	commandList->IASetIndexBuffer(m_indexBufferView);
+	commandList->IASetIndexBuffer(&m_indexBufferView);
 }

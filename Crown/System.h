@@ -53,6 +53,10 @@ namespace Crown
 		/// <returns></returns>
 		inline RenderObject::RenderSystem& GetRenderSystem() { return m_renderSystem; }
 
+		/// <summary>
+		/// ウィンドウハンドルを取得するよ☆
+		/// </summary>
+		inline HWND GetWindow() { return m_window.GetWindowHandle(); }
 	private:
 		System();
 		System(System& system) = delete;

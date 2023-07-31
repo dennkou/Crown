@@ -27,7 +27,7 @@ namespace Crown
 			private:
 				UINT m_startSlot;
 				UINT m_numViews;
-				D3D12_VERTEX_BUFFER_VIEW* m_vertexBufferView;
+				D3D12_VERTEX_BUFFER_VIEW m_vertexBufferView;
 			};
 		}
 	}

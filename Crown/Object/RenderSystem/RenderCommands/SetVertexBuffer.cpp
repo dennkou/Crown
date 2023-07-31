@@ -4,7 +4,7 @@ Crown::RenderObject::RenderCommand::SetVertexBuffer::SetVertexBuffer(UINT startS
 	:
 	m_startSlot(startSlot),
 	m_numViews(numViews),
-	m_vertexBufferView(vertexBufferView)
+	m_vertexBufferView(*vertexBufferView)
 {
 }
 
@@ -22,5 +22,5 @@ void Crown::RenderObject::RenderCommand::SetVertexBuffer::Write(FILE* file)
 
 void Crown::RenderObject::RenderCommand::SetVertexBuffer::Run(ID3D12GraphicsCommandList* commandList)
 {
-	commandList->IASetVertexBuffers(m_startSlot, m_numViews, m_vertexBufferView);
+	commandList->IASetVertexBuffers(m_startSlot, m_numViews, &m_vertexBufferView);
 }

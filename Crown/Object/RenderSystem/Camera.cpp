@@ -3,6 +3,9 @@
 #include "RenderCommands/RenderCommandFactory.h"
 #include "DirectX12Wraps/DescriptorHeaps.h"
 #include <d3dx12.h>
+#include "Camera.h"
+#include "Camera.h"
+#include "Camera.h"
 
 Crown::RenderObject::Camera* Crown::RenderObject::Camera::me = nullptr;
 

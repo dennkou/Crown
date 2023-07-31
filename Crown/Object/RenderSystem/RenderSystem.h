@@ -38,7 +38,6 @@ namespace Crown
 			void Update();
 
 			ModelManager& GetModelManager() { return m_modelManager; }
-			ID3D12Device* GetDevice() { return m_device.Get(); }
 		private:
 			Crown::Window& m_renderTargetWindow;			//	描画対象のウィンドウだよ☆
 

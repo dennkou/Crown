@@ -40,6 +40,7 @@ void Crown::System::Initialize()
 
 void Crown::System::Update()
 {
+	Input::Update();
 	m_window.ProcessMessage();
 	m_endFlag = m_window.GetEndFlag();
 	m_renderSystem.Update();

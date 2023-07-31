@@ -36,6 +36,12 @@ void Crown::RenderObject::Model::LoadPMD(const std::wstring& fileName)
 	System::GetInstance().GetRenderSystem().GetModelManager().loadModel(&loader);
 }
 
+void Crown::RenderObject::Model::LoadPMX(const std::wstring& fileName)
+{
+	ModelLoader loader(fileName, ModelLoader::LoadFile::PMX, *this);
+	System::GetInstance().GetRenderSystem().GetModelManager().loadModel(&loader);
+}
+
 void Crown::RenderObject::Model::Draw(MaterialTag drawTag, GraphicsCommandList& commandList)
 {
 	for (MaterialMesh& materialMesh : m_materialMeshs)

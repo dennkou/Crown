@@ -51,12 +51,12 @@ namespace Crown
 				float farZ;										//	ÉtÉ@Å[ñ ÇæÇÊÅô
 				CameraData() 
 					:
-					fovAngle(1.04719755f),
+					fovAngle(DirectX::XMConvertToRadians(90)),
 					aspect(1280.0f / 720.0f),
-					nearZ(0.01f),
+					nearZ(0.1f),
 					farZ(1000.0f),
 					view(DirectX::XMMatrixTranslation(0,0,-20)),
-					projection(DirectX::XMMatrixPerspectiveFovLH(1.04719755f, 1.77777777f, 0.01f, 1000.0f)),
+					projection(DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(120), (1280.0f / 720.0f), 0.01f, 1000.0f)),
 					viewProjection(projection * view),
 					eye(DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f))
 				{

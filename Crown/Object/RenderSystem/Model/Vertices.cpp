@@ -2,15 +2,6 @@
 #include "./../DirectX12Wraps/ResourceUploader.h"
 #include "d3dx12.h"
 
-const D3D12_INPUT_ELEMENT_DESC Crown::RenderObject::Vertices::m_inputLayout[5] =
-{
-	{ "POSITION",	0,DXGI_FORMAT_R32G32B32_FLOAT,	0,D3D12_APPEND_ALIGNED_ELEMENT,D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA,0 },
-	{ "NORMAL",		0,DXGI_FORMAT_R32G32B32_FLOAT,	0,D3D12_APPEND_ALIGNED_ELEMENT,D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA,0 },
-	{ "TEXCOORD",	0,DXGI_FORMAT_R32G32_FLOAT,		0,D3D12_APPEND_ALIGNED_ELEMENT,D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA,0 },
-	{ "BONE_INDEX",	0,DXGI_FORMAT_R32G32_UINT,		0,D3D12_APPEND_ALIGNED_ELEMENT,D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA,0 },
-	{ "WEIGHT",		0,DXGI_FORMAT_R32_FLOAT,		0,D3D12_APPEND_ALIGNED_ELEMENT,D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA,0 }
-};
-
 Crown::RenderObject::Vertices::Vertices()
 	:
 	m_vertexBuffer(nullptr),
@@ -55,12 +46,4 @@ void Crown::RenderObject::Vertices::CreateBuffer(ID3D12Device* device, std::vect
 
 	m_vertexBuffer->SetName(L"vertexBuffer");
 	m_indexBuffer->SetName(L"indexBuffer");
-}
-
-D3D12_INPUT_LAYOUT_DESC Crown::RenderObject::Vertices::GetInputLayoutDesc()
-{
-	D3D12_INPUT_LAYOUT_DESC inputLayoutDesc = {};
-	inputLayoutDesc.pInputElementDescs = m_inputLayout;
-	inputLayoutDesc.NumElements = 5;
-	return inputLayoutDesc;
 }
