@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Crown">
+      <UniqueIdentifier>{b59b53c5-39c4-4765-a057-85abe990992c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{107184e1-b24d-4140-8342-73b553e3a35b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Crown</Filter>
+    </ClCompile>
+    <ClCompile Include="Crown\Device.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Crown\Crown.h" />
+    <ClInclude Include="Crown\System\System.h" />
+    <ClInclude Include="Crown\Render\RenderSystem\RenderSystem.h" />
+    <ClInclude Include="Crown\Device.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Crown\Crown.txt" />
+  </ItemGroup>
+</Project>
