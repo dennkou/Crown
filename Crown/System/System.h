@@ -2,12 +2,15 @@
 #include "Crown.h"
 
 //	OS‚ÉˆË‘¶‚·‚é•”•ª‚ğ”²‚«o‚µ‚½ƒNƒ‰ƒX‚¾‚æ™
-class Crown<class t>::System
+namespace Crown
 {
-public:
-	System(std::string AppName) {};
-	virtual ~System() {};
+	class System
+	{
+	public:
+		System() {};
+		virtual ~System() {};
 
-	virtual void CreateRenderSystem() = 0;
-private:
-};
+		virtual void CreateRenderSystem() = 0;
+	private:
+	};
+}

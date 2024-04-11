@@ -12,13 +12,13 @@
     <ClCompile Include="main.cpp">
       <Filter>Crown</Filter>
     </ClCompile>
-    <ClCompile Include="Crown\Device.cpp" />
+    <ClCompile Include="Crown\GameEngine\GameEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Crown\Crown.h" />
     <ClInclude Include="Crown\System\System.h" />
     <ClInclude Include="Crown\Render\RenderSystem\RenderSystem.h" />
-    <ClInclude Include="Crown\Device.h" />
+    <ClInclude Include="Crown\GameEngine\GameEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Crown\Crown.txt" />

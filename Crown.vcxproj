@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Crown\Device.cpp" />
+    <ClCompile Include="Crown\GameEngine\GameEngine.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Crown\Crown.h" />
-    <ClInclude Include="Crown\Device.h" />
+    <ClInclude Include="Crown\GameEngine\GameEngine.h" />
     <ClInclude Include="Crown\Render\RenderSystem\RenderSystem.h" />
     <ClInclude Include="Crown\System\System.h" />
   </ItemGroup>
