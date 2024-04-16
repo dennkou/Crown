@@ -1,21 +1,23 @@
 #pragma once
 #include <mutex>
+#include "Crown.h"
+#include "MultiThreadedInterface.h"
 
 namespace Crown
 {
-	//	ライブラリ本体だよ☆マルチスレッドに対応しているよ☆
 	class GameEngine
 	{
-	//	シングルトン化にかかわる記述だよ☆
 	public:
 		static GameEngine& GetGameEngine();
+
+		//	起動設定用の関数だよ☆
+
+		//	実行☆
+		void Run(std::wstring appName);
+
+		MultiThreadedInterface<IRenderEngine>* GetRenderEngine() { return &m_renderEngine; }
 	private:
-		GameEngine();
-		~GameEngine();
-		GameEngine& operator=(GameEngine& gameEngine) = delete;
-		GameEngine(GameEngine& gameEngine) = delete;
-		GameEngine(GameEngine&& gameEngine) = delete;
-		GameEngine& operator=(GameEngine&& gameEngine) = delete;
+		//	インナークラスの宣言☆
 		class GameEngineInstance
 		{
 		public:
@@ -26,16 +28,21 @@ namespace Crown
 			GameEngine* m_gameEngine;
 			std::once_flag m_once;
 		};
+
+		//	ここから関数宣言☆
+		GameEngine();
+		~GameEngine();
+		GameEngine& operator=(GameEngine& gameEngine) = delete;
+		GameEngine(GameEngine& gameEngine) = delete;
+		GameEngine(GameEngine&& gameEngine) = delete;
+		GameEngine& operator=(GameEngine&& gameEngine) = delete;
+
+		static LRESULT CrownWindowProcedure(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
+
+		//	ここから変数宣言☆
 		static GameEngineInstance instance;
-
-	//	マルチスレッド化のための記述だよ☆
-	public:
-	private:
 		std::mutex m_mutex;
-
-	//	ライブラリの管理の為の記述だよ☆
-	public:
-	private:
-
+		Window m_mainWindow;
+		MultiThreadedInterface<IRenderEngine> m_renderEngine;		
 	};
 }
