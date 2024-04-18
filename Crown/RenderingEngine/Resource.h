@@ -13,15 +13,13 @@ namespace Crown
 		~Resource();
 
 		template<typename DataType>
-		void Upload(std::function<void(Microsoft::WRL::ComPtr<ID3D12Resource>, DataType*)> dataCopy)
+		void Upload(unsigned long long dataSize, std::function<void(Microsoft::WRL::ComPtr<ID3D12Resource>, DataType*)> dataCopy)
 		{
-
+			m_resourceManager->Upload(m_resource, dataSize, dataCopy);
 		}
 
-		inline operator Microsoft::WRL::ComPtr<ID3D12Resource>() noexcept
-		{
-			return m_resource;
-		}
+		inline operator Microsoft::WRL::ComPtr<ID3D12Resource>() noexcept { return m_resource; }
+		inline Microsoft::WRL::ComPtr<ID3D12Resource> Get() noexcept { return m_resource; }
 	private:
 		std::shared_ptr<ResourceManager> m_resourceManager;
 		Microsoft::WRL::ComPtr<ID3D12Resource> m_resource;

@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <memory>
 
 #include "DirectX12.h"
 #include "Crown.h"
@@ -8,6 +9,8 @@
 #include "GPUThread.h"
 #include "SwapChain.h"
 #include "CommandList.h"
+#include "ResourceManager.h"
+
 
 namespace Crown
 {
@@ -19,13 +22,13 @@ namespace Crown
 
 		virtual void Render();
 	private:
-		void RebuildPipeline();
-		void GPUThreadsSetup();
+		void RebuildPipeline();		//	パイプラインの再構築を行うよ☆
+		void GPUThreadsSetup();		//	GPUスレッドの設定をするよ☆
 
 		enum class CommandListName : unsigned int
 		{
 			DrawMainWindow,
-			CopyOnly,
+			Copy,
 			Num
 		};
 
@@ -38,8 +41,9 @@ namespace Crown
 		Window* m_renderTarget;
 		Microsoft::WRL::ComPtr<ID3D12Device> m_device;
 
-		std::vector<GPUThread*> m_gpuThreads;
+		std::vector<std::unique_ptr<GPUThread>> m_gpuThreads;
 		SwapChain m_swapChain;
-		std::vector<CommandList*> m_commandLists;
+		std::vector<std::shared_ptr<CommandList>> m_commandLists;
+		std::shared_ptr<ResourceManager> m_resourceManager;
 	};
 }

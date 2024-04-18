@@ -22,6 +22,10 @@
     <ClCompile Include="Crown\RenderingEngine\SwapChain.cpp" />
     <ClCompile Include="Crown\RenderingEngine\ResourceManager.cpp" />
     <ClCompile Include="Crown\RenderingEngine\Resource.cpp" />
+    <ClCompile Include="Crown\RenderingEngine\DescriptorHeap.cpp" />
+    <ClCompile Include="Crown\RenderingEngine\Model.cpp" />
+    <ClCompile Include="Crown\RenderingEngine\Material.cpp" />
+    <ClCompile Include="Crown\RenderingEngine\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Crown\Crown.h" />
@@ -42,5 +46,10 @@
     <ClInclude Include="Crown\GameEngine\MultiThreadedInterface.h" />
     <ClInclude Include="Crown\RenderingEngine\ResourceManager.h" />
     <ClInclude Include="Crown\RenderingEngine\Resource.h" />
+    <ClInclude Include="Crown\RenderingEngine\DescriptorHeap.h" />
+    <ClInclude Include="Crown\RenderingEngine\Model.h" />
+    <ClInclude Include="Crown\RenderingEngine\Material.h" />
+    <ClInclude Include="Crown\RenderingEngine\Vertices.h" />
+    <ClInclude Include="Crown\RenderingEngine\Shader.h" />
   </ItemGroup>
 </Project>

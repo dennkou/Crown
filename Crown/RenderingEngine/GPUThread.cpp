@@ -25,7 +25,7 @@ void Crown::GPUThread::SetCommandList(CommandList* commandList, unsigned int exe
 	m_executonPhase[ExecutonPhaseToIndex(executonPhaseIndex)].command.emplace_back(commandList->GetCommandList().Get());
 }
 
-void Crown::GPUThread::GPUWait(GPUThread* thread, unsigned int value, unsigned int executonPhaseIndex)
+void Crown::GPUThread::GPUWait(const GPUThread* const thread, unsigned int value, unsigned int executonPhaseIndex)
 {
 	CheckExecutonPhaseNum(executonPhaseIndex);
 	assert(value);
@@ -50,7 +50,7 @@ void Crown::GPUThread::CPUWait()
 void Crown::GPUThread::Executon()
 {
 	unsigned int executonPhase = 1;								//	現在の実行フェーズだよ☆
-	unsigned int executonPhaseNum = static_cast<unsigned int>(m_executonPhase.size());
+	const unsigned int executonPhaseNum = static_cast<unsigned int>(m_executonPhase.size());
 	for (; ExecutonPhaseToIndex(executonPhase) < executonPhaseNum; ++executonPhase)
 	{
 		for (const WaitInfo& waitInfo : m_executonPhase[ExecutonPhaseToIndex(executonPhase)].wait)

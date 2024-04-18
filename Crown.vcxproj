@@ -24,12 +24,16 @@
     <ClCompile Include="Crown\GameEngine\GameEngine.cpp" />
     <ClCompile Include="Crown\Windows\Window.cpp" />
     <ClCompile Include="Crown\RenderingEngine\GPUThread.cpp" />
+    <ClCompile Include="Crown\RenderingEngine\DescriptorHeap.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Crown\RenderingEngine\RenderEngine.cpp" />
     <ClCompile Include="Crown\RenderingEngine\RenderEngineFactory.cpp" />
     <ClCompile Include="Crown\RenderingEngine\SwapChain.cpp" />
     <ClCompile Include="Crown\RenderingEngine\ResourceManager.cpp" />
     <ClCompile Include="Crown\RenderingEngine\Resource.cpp" />
+    <ClCompile Include="Crown\RenderingEngine\Model.cpp" />
+    <ClCompile Include="Crown\RenderingEngine\Material.cpp" />
+    <ClCompile Include="Crown\RenderingEngine\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Crown\GameEngine\GameEnginePublicClass.h" />
@@ -43,6 +47,7 @@
     <ClInclude Include="Crown\RenderingEngine\IRenderSystem.h" />
     <ClInclude Include="Crown\RenderingEngine\RenderEngine.h" />
     <ClInclude Include="Crown\RenderingEngine\RenderingEnginePublicClass.h" />
+    <ClInclude Include="Crown\RenderingEngine\Vertices.h" />
     <ClInclude Include="Crown\Windows\Window.h" />
     <ClInclude Include="Crown\RenderingEngine\GPUThread.h" />
     <ClInclude Include="Crown\RenderingEngine\RenderEngineFactory.h" />
@@ -50,6 +55,10 @@
     <ClInclude Include="Crown\RenderingEngine\SwapChain.h" />
     <ClInclude Include="Crown\RenderingEngine\ResourceManager.h" />
     <ClInclude Include="Crown\RenderingEngine\Resource.h" />
+    <ClInclude Include="Crown\RenderingEngine\DescriptorHeap.h" />
+    <ClInclude Include="Crown\RenderingEngine\Model.h" />
+    <ClInclude Include="Crown\RenderingEngine\Material.h" />
+    <ClInclude Include="Crown\RenderingEngine\Shader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

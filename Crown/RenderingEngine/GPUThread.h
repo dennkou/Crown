@@ -25,7 +25,7 @@ namespace Crown
 		/// <param name="thread"> 待つ対象☆ </param>
 		/// <param name="Value"> 何個目が終るまで待機するか☆ </param>
 		/// <param name="ExecutonPhaseIndex"> 待機するフェーズ☆ </param>
-		void GPUWait(GPUThread* thread, unsigned int value, unsigned int executonPhaseIndex);
+		void GPUWait(const GPUThread* const thread, unsigned int value, unsigned int executonPhaseIndex);
 
 		//	実行が終るまでCPUを待機させるよ☆
 		void CPUWait();
