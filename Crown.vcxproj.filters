@@ -26,6 +26,8 @@
     <ClCompile Include="Crown\RenderingEngine\Model.cpp" />
     <ClCompile Include="Crown\RenderingEngine\Material.cpp" />
     <ClCompile Include="Crown\RenderingEngine\Shader.cpp" />
+    <ClCompile Include="Crown\RenderingEngine\ConstBuffer.cpp" />
+    <ClCompile Include="Crown\RenderingEngine\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Crown\Crown.h" />
@@ -51,5 +53,10 @@
     <ClInclude Include="Crown\RenderingEngine\Material.h" />
     <ClInclude Include="Crown\RenderingEngine\Vertices.h" />
     <ClInclude Include="Crown\RenderingEngine\Shader.h" />
+    <ClInclude Include="Crown\RenderingEngine\ConstBuffer.h" />
+    <ClInclude Include="Crown\RenderingEngine\TextureManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader\DebugVS.hlsl" />
   </ItemGroup>
 </Project>

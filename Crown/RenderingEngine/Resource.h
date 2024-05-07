@@ -13,7 +13,7 @@ namespace Crown
 		~Resource();
 
 		template<typename DataType>
-		void Upload(unsigned long long dataSize, std::function<void(Microsoft::WRL::ComPtr<ID3D12Resource>, DataType*)> dataCopy)
+		void Upload(UINT64 dataSize, std::function<void(DataType*)> dataCopy)
 		{
 			m_resourceManager->Upload(m_resource, dataSize, dataCopy);
 		}

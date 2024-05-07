@@ -12,7 +12,7 @@ namespace Crown
 
 
 	private:
-		std::vector<Resource> m_resource;
+		//std::vector<Resource> m_resource;
 		unsigned int m_descriptorOffset;
 	};
 }

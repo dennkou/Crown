@@ -11,7 +11,7 @@ namespace Crown
 		SwapChain();
 		~SwapChain();
 
-		void Initialize(ID3D12Device* device, const Crown::Window* const window, ID3D12CommandQueue* commandQueue, unsigned int bufferNum = 2);
+		void Initialize(ID3D12Device* device, const Crown::Window* const window, ID3D12CommandQueue* commandQueue, unsigned int bufferNum);
 
 		void Present(UINT syncInterval);
 

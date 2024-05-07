@@ -22,13 +22,14 @@ namespace Crown
 
 		virtual void Render();
 	private:
+		static constexpr int BackBufferNum = 2;
+
 		void RebuildPipeline();		//	パイプラインの再構築を行うよ☆
 		void GPUThreadsSetup();		//	GPUスレッドの設定をするよ☆
 
-		enum class CommandListName : unsigned int
+		enum class CommandListNames : unsigned int
 		{
 			DrawMainWindow,
-			Copy,
 			Num
 		};
 
@@ -41,7 +42,8 @@ namespace Crown
 		Window* m_renderTarget;
 		Microsoft::WRL::ComPtr<ID3D12Device> m_device;
 
-		std::vector<std::unique_ptr<GPUThread>> m_gpuThreads;
+		GPUThread m_gpuThread;
+
 		SwapChain m_swapChain;
 		std::vector<std::shared_ptr<CommandList>> m_commandLists;
 		std::shared_ptr<ResourceManager> m_resourceManager;

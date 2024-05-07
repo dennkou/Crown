@@ -1,4 +1,5 @@
 #include "SwapChain.h"
+#include "assert.h"
 
 Crown::SwapChain::SwapChain()
 	:

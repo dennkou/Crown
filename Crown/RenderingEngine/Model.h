@@ -10,7 +10,8 @@ namespace Crown
 
 
 	private:
-		Vertices m_vertices;
+	//	Vertices m_vertices;
+
 
 	};
 }

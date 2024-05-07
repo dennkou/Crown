@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Crown\RenderingEngine\ConstBuffer.cpp" />
     <ClCompile Include="Crown\RenderingEngine\BundleCommandList.cpp" />
     <ClCompile Include="Crown\RenderingEngine\CommandList.cpp" />
     <ClCompile Include="Crown\GameEngine\GameEngine.cpp" />
@@ -34,8 +35,10 @@
     <ClCompile Include="Crown\RenderingEngine\Model.cpp" />
     <ClCompile Include="Crown\RenderingEngine\Material.cpp" />
     <ClCompile Include="Crown\RenderingEngine\Shader.cpp" />
+    <ClCompile Include="Crown\RenderingEngine\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Crown\RenderingEngine\ConstBuffer.h" />
     <ClInclude Include="Crown\GameEngine\GameEnginePublicClass.h" />
     <ClInclude Include="Crown\GameEngine\MultiThreadedInterface.h" />
     <ClInclude Include="Crown\RenderingEngine\BundleCommandList.h" />
@@ -59,6 +62,15 @@
     <ClInclude Include="Crown\RenderingEngine\Model.h" />
     <ClInclude Include="Crown\RenderingEngine\Material.h" />
     <ClInclude Include="Crown\RenderingEngine\Shader.h" />
+    <ClInclude Include="Crown\RenderingEngine\TextureManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader\DebugVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
